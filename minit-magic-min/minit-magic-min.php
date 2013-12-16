@@ -20,21 +20,21 @@ class Minit_Magic_Min{
 
         }
 
-        public function minit_content_css($content = '', $object = '', $script = '') {
-			return $this->minify($content,'css');
+        public function minit_content_css($content = '', $object = '', $script = ''){
+        	return $this->minify($content,'css');
         }
 
-        public function minit_content_js($content = '', $object = '', $script = '') {
-			return $this->minify($content, 'js');
+        public function minit_content_js($content = '', $object = '', $script = ''){
+        	return $this->minify($content, 'js');
         }
 
-        private function minify($content = '',$type = 'css') {
+        private function minify($content = '',$type = 'css'){
         	
         	if(strlen($content)){
 
-	        	$_minified = $this->minify_content($content, $type);
+        		$_minified = $this->minify_content($content, $type);
 	                
-	        	if(strlen($_minified))$content = $_minified;
+        		if(strlen($_minified))$content = $_minified;
                 
         	}    
 
