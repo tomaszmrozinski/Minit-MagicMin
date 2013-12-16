@@ -27,7 +27,7 @@ class Minit_Magic_Min{
         public function minit_content_js($content = '', $object = '', $script = ''){
         	return $this->minify($content, 'js');
         }
-
+        
         private function minify($content = '',$type = 'css'){
         	
         	if(strlen($content)){
@@ -95,5 +95,4 @@ class Minit_Magic_Min{
 					return $this->content;
         
         }
-
 }
