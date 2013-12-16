@@ -1,2 +1,9 @@
-Minit MagicMin <br>s
-Adds Magic Min Compressor minification to the Minit plugin by Kaspars Dambis. Based on MagicMin class by Bennett Stone (www.phpdevtips.com) and Minit YUI class by Bjørn Johansen (https://github.com/bjornjohansen/minit-yui)
+Minit MagicMin
+=========
+
+Adds [Magic Min](http://www.phpdevtips.com) minification to the [Minit](https://github.com/kasparsd/minit) WordPress plugin by Kaspars Dambis
+
+## Installation
+1. Install Minit
+2. Install Minit MagicMin
+3. Activate Minit and Minit MagicMin
