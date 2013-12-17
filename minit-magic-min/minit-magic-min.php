@@ -49,13 +49,13 @@ class Minit_Magic_Min{
         
         		$this->content = $this->source;
         		/* remove comments */
-        		$this->content = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $this->content );
+        		$this->content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $this->content);
         		/* remove tabs, spaces, newlines, etc. */
-        		$this->content = str_replace( array("\r\n","\r","\n","\t",'  ','    ','     '), '', $this->content );
+        		$this->content = str_replace(array("\r\n","\r","\n","\t",'  ','    ','     '), '', $this->content);
         		/* remove other spaces before/after ; */
-        		$this->content = preg_replace( array('(( )+{)','({( )+)'), '{', $this->content );
-        		$this->content = preg_replace( array('(( )+})','(}( )+)','(;( )*})'), '}', $this->content );
-        		$this->content = preg_replace( array('(;( )+)','(( )+;)'), ';', $this->content );
+        		$this->content = preg_replace(array('(( )+{)','({( )+)'), '{', $this->content);
+        		$this->content = preg_replace(array('(( )+})','(}( )+)','(;( )*})'), '}', $this->content);
+        		$this->content = preg_replace(array('(;( )+)','(( )+;)'), ';', $this->content);
         
         	} //end $this->type == 'css'
         
@@ -67,28 +67,28 @@ class Minit_Magic_Min{
         		$data = array(
 	        		'compilation_level' => 'SIMPLE_OPTIMIZATIONS',
 	        		'output_format' => 'text',
-					'output_info' => 'compiled_code',
-					'js_code' => urlencode( $this->content )
+	        		'output_info' => 'compiled_code',
+	        		'js_code' => urlencode( $this->content )
         		);
         
         		//Compile it into a post compatible format
         		$fields_string = '';
-        		foreach( $data as $key => $value )$fields_string .= $key . '=' . $value . '&';
+        		foreach($data as $key => $value)$fields_string .= $key . '=' . $value . '&';
         		
         		rtrim( $fields_string, '&' );
         
         		//Initiate and execute the curl request
         		$h = curl_init();
-        		curl_setopt( $h, CURLOPT_URL, 'http://closure-compiler.appspot.com/compile' );
-        		curl_setopt( $h, CURLOPT_POST, true );
-        		curl_setopt( $h, CURLOPT_POSTFIELDS, $fields_string );
-        		curl_setopt( $h, CURLOPT_HEADER, false );
-        		curl_setopt( $h, CURLOPT_RETURNTRANSFER, 1 );
-        		$result = curl_exec( $h );
+        		curl_setopt($h, CURLOPT_URL, 'http://closure-compiler.appspot.com/compile');
+        		curl_setopt($h, CURLOPT_POST, true);
+        		curl_setopt($h, CURLOPT_POSTFIELDS, $fields_string);
+        		curl_setopt($h, CURLOPT_HEADER, false );
+        		curl_setopt($h, CURLOPT_RETURNTRANSFER, 1);
+        		$result = curl_exec($h);
         		$this->content = $result;
         		
         		//close connection
-        		curl_close( $h );
+        		curl_close($h);
         	}
         	//Add to the output and return it
 					return $this->content;
