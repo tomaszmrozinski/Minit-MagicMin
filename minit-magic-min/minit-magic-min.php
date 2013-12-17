@@ -8,7 +8,6 @@ Author: Tomasz Mrozinski
 Author URI: mroznski.net
 */
 
-
 new Minit_Magic_Min;
 
 class Minit_Magic_Min{
