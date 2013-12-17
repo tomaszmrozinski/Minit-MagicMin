@@ -11,6 +11,9 @@ Author URI: mroznski.net
 new Minit_Magic_Min;
 
 class Minit_Magic_Min{
+	
+	private $content;
+	private $type;
 
         public function __construct(){
 
@@ -44,29 +47,13 @@ class Minit_Magic_Min{
         	
         }
         
-        private function minify_content($src_content = false, $type = 'css'){
+        private function minify_content($content, $type = 'css'){
         
-        	$this->source = $src_content;
+              	$this->content = $content;
         	$this->type = $type;
         
-        	if($this->type == 'css'){
-        
-        		$this->content = $this->source;
-        		/* remove comments */
-        		$this->content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $this->content);
-        		/* remove tabs, spaces, newlines, etc. */
-        		$this->content = str_replace(array("\r\n","\r","\n","\t",'  ','    ','     '), '', $this->content);
-        		/* remove other spaces before/after ; */
-        		$this->content = preg_replace(array('(( )+{)','({( )+)'), '{', $this->content);
-        		$this->content = preg_replace(array('(( )+})','(}( )+)','(;( )*})'), '}', $this->content);
-        		$this->content = preg_replace(array('(;( )+)','(( )+;)'), ';', $this->content);
-        
-        	} //end $this->type == 'css'
-        
-        	if($this->type == 'js'){
+        	 if($this->type == 'js'){
         		
-        		$this->content = $this->source;
-        
         		//Build the data array
         		$data = array(
 	        		'compilation_level' => 'SIMPLE_OPTIMIZATIONS',
@@ -93,7 +80,20 @@ class Minit_Magic_Min{
         		
         		//close connection
         		curl_close($h);
-        	}
+        		
+        	}else{//$this->type == 'css'
+        	
+        		/* remove comments */
+        		$this->content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $this->content);
+        		/* remove tabs, spaces, newlines, etc. */
+        		$this->content = str_replace(array("\r\n","\r","\n","\t",'  ','    ','     '), '', $this->content);
+        		/* remove other spaces before/after ; */
+        		$this->content = preg_replace(array('(( )+{)','({( )+)'), '{', $this->content);
+        		$this->content = preg_replace(array('(( )+})','(}( )+)','(;( )*})'), '}', $this->content);
+        		$this->content = preg_replace(array('(;( )+)','(( )+;)'), ';', $this->content);
+        
+        	} //end $this->type == 'css'
+        	
         	
 		return $this->content;
         
