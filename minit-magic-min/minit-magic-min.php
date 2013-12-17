@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Minit MagicMin
-Plugin URI: https://github.com/tomaszmrozinski/Minit-MagicMin
+Plugin URI: https://github.com/tomaszmrozinski/minit-magic-min
 Description: Adds Magic Min Compressor minification to the Minit plugin by Kaspars Dambis. Based on MagicMin class by Bennett Stone (www.phpdevtips.com) and Minit YUI class by Bjørn Johansen (https://github.com/bjornjohansen/minit-yui) 
 Version: 0.0.1
 Author: Tomasz Mrozinski
@@ -20,11 +20,15 @@ class Minit_Magic_Min{
         }
 
         public function minit_content_css($content = '', $object = '', $script = ''){
+        	
         	return $this->minify($content,'css');
+        	
         }
 
         public function minit_content_js($content = '', $object = '', $script = ''){
+        	
         	return $this->minify($content, 'js');
+        	
         }
         
         private function minify($content = '',$type = 'css'){
@@ -32,15 +36,15 @@ class Minit_Magic_Min{
         	if(strlen($content)){
 
         		$_minified = $this->minify_content($content, $type);
-	                
-        		if(strlen($_minified))$content = $_minified;
+	                if(strlen($_minified))$content = $_minified;
                 
         	}    
 
         	return $content;
+        	
         }
         
-        private function minify_content($src_content = false, $type = 'css', $run_minification = true ){
+        private function minify_content($src_content = false, $type = 'css'){
         
         	$this->source = $src_content;
         	$this->type = $type;
@@ -68,14 +72,14 @@ class Minit_Magic_Min{
 	        		'compilation_level' => 'SIMPLE_OPTIMIZATIONS',
 	        		'output_format' => 'text',
 	        		'output_info' => 'compiled_code',
-	        		'js_code' => urlencode( $this->content )
+	        		'js_code' => urlencode($this->content)
         		);
         
         		//Compile it into a post compatible format
         		$fields_string = '';
         		foreach($data as $key => $value)$fields_string .= $key . '=' . $value . '&';
         		
-        		rtrim( $fields_string, '&' );
+        		rtrim($fields_string, '&');
         
         		//Initiate and execute the curl request
         		$h = curl_init();
@@ -90,8 +94,8 @@ class Minit_Magic_Min{
         		//close connection
         		curl_close($h);
         	}
-        	//Add to the output and return it
-					return $this->content;
+        	
+		return $this->content;
         
         }
 }
